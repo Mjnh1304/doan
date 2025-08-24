@@ -41,6 +41,14 @@
         </div>
 
         <div class="mb-4">
+            <label for="panorama_url" class="block text-gray-700 font-bold mb-2">Link ảnh 360:</label>
+            <input type="url" name="panorama_url" id="panorama_url"
+                value="{{ old('panorama_url', $villa->panorama_url ?? '') }}"
+                class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+                placeholder="Dán link Momento360 hoặc URL ảnh 360 khác">
+        </div>
+
+        <div class="mb-4">
             <label class="block mb-1 font-medium">Hình ảnh</label>
             <input type="file" name="image" accept="image/*" class="w-full border-gray-300 rounded p-2">
         </div>

@@ -1,4 +1,10 @@
 <x-guest-layout>
+ @if (session('message'))
+    <div class="mb-4 font-medium text-sm text-red-600 dark:text-red-400">
+        {{ session('message') }}
+    </div>
+    @endif
+
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('messages.verify_email_message') }}
     </div>

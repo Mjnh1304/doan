@@ -9,9 +9,30 @@ use Illuminate\Support\Facades\Storage;
 
 class VillaController extends Controller
 {
-    public function index()
+     public function index(Request $request)
     {
-        $villas = Villa::latest()->paginate(10);
+        $query = Villa::query();
+
+        // Tìm kiếm
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('name', 'like', "%$keyword%")
+                    ->orWhere('location', 'like', "%$keyword%");
+            });
+        }
+
+        // Sắp xếp
+        if ($request->sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $villas = $query->paginate(10)->withQueryString();
+
         return view('admin.villas.index', compact('villas'));
     }
 
@@ -27,10 +48,11 @@ class VillaController extends Controller
             'location' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
+            'panorama_url' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $data = $request->only('name', 'location', 'price', 'description');
+        $data = $request->only('name', 'location', 'price', 'description', 'panorama_url');
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('villas', 'public');
@@ -58,9 +80,10 @@ class VillaController extends Controller
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'panorama_url' => 'nullable|url',
         ]);
 
-        $data = $request->only('name', 'location', 'price', 'description');
+        $data = $request->only('name', 'location', 'price', 'description','panorama_url');
 
         if ($request->hasFile('image')) {
             if ($villa->image && Storage::disk('public')->exists($villa->image)) {

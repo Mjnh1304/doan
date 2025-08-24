@@ -1,78 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($villas->isNotEmpty())
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($villas as $villa)
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <button onclick="openModal({{ $villa->id }})" class="w-full text-left">
-                        <img src="{{ $villa->image ? asset('storage/' . $villa->image) : asset('images/default.jpg') }}"
-                             alt="{{ $villa->name ?: 'Tên villa không xác định' }}"
-                             class="w-full h-52 object-cover hover:scale-105 transition-transform duration-300">
-                    </button>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-indigo-700 truncate">
-                            {{ $villa->name ?: 'Tên villa không xác định' }}
-                        </h3>
-                        <p class="text-gray-600 text-sm mt-2">
-                            {{ \Str::limit($villa->description ?: 'Không có mô tả', 100) }}
-                        </p>
-                        <div class="mt-3 flex justify-between items-center">
-                            <span class="text-indigo-600 font-bold text-base">
-                                {{ number_format($villa->price ?? 0, 0, ',', '.') }} VND / người
-                            </span>
-                            <button onclick="openModal({{ $villa->id }})"
-                                    class="bg-indigo-600 text-white text-sm px-3 py-1.5 rounded-lg hover:bg-indigo-700 transition">
-                                Xem chi tiết
-                            </button>
-                        </div>
-                    </div>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-10">{{ __('messages.home.explore_services') }}</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <a href="{{ route('villas.index') }}" class="relative group overflow-hidden rounded-xl shadow-md aspect-square">
+            <img src="/images/villa.jpg" alt="Villa"
+                class="w-full h-full object-cover transition duration-500 ease-in-out brightness-50 group-hover:brightness-100 group-hover:scale-105">
+            <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+                <div class="text-center bg-black bg-opacity-50 px-4 py-2 rounded-md">
+                    <h2 class="text-white text-lg font-semibold uppercase tracking-wide">Villa</h2>
+                    <div class="mt-1 w-10 h-0.5 bg-white mx-auto"></div>
                 </div>
-
-                {{-- Modal --}}
-<div id="modal-{{ $villa->id }}" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-xl w-full max-w-2xl p-6 relative shadow-lg">
-        <button onclick="closeModal({{ $villa->id }})"
-                class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl">&times;</button>
-
-        {{-- Ảnh chính --}}
-        <img src="{{ $villa->image ? asset('storage/' . $villa->image) : asset('images/default.jpg') }}"
-             alt="{{ $villa->name }}"
-             class="w-full h-64 object-cover rounded-lg mb-4">
-
-        {{-- Ảnh 360 --}}
-        <div class="mb-4">
-            <p class="text-gray-800 font-semibold mb-2">Ảnh 360 của căn:</p>
-            <div class="aspect-video w-full">
-                <iframe 
-                    src="https://momento360.com/e/u/f0d147c5aa404d22b411f27a0afd5a95?utm_campaign=embed&utm_source=other&heading=-274.61&pitch=6.3&field-of-view=75&size=medium&display-plan=true" 
-                    frameborder="0" 
-                    allowfullscreen 
-                    class="w-full h-80 rounded-lg shadow">
-                </iframe>
             </div>
-        </div>
+        </a>
 
-        {{-- Thông tin villa --}}
-        <h2 class="text-2xl font-bold mb-2">{{ $villa->name }}</h2>
-        <p class="text-gray-700 mb-4">Tiện ích: {{ $villa->description }}</p>
-        <p class="text-indigo-600 font-semibold">Giá thuê: {{ number_format($villa->price, 0, ',', '.') }} VND/người</p>
+        <a href="{{ route('resorts.index') }}" class="relative group overflow-hidden rounded-xl shadow-md aspect-square">
+            <img src="/images/resort.jpg" alt="Resort"
+                class="w-full h-full object-cover transition duration-500 ease-in-out brightness-50 group-hover:brightness-100 group-hover:scale-105">
+            <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+                <div class="text-center bg-black bg-opacity-50 px-4 py-2 rounded-md">
+                    <h2 class="text-white text-lg font-semibold uppercase tracking-wide">Resort</h2>
+                    <div class="mt-1 w-10 h-0.5 bg-white mx-auto"></div>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{ route('homestays.index') }}" class="relative group overflow-hidden rounded-xl shadow-md aspect-square">
+            <img src="/images/homestay.jpg" alt="Homestay"
+                class="w-full h-full object-cover transition duration-500 ease-in-out brightness-50 group-hover:brightness-100 group-hover:scale-105">
+            <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+                <div class="text-center bg-black bg-opacity-50 px-4 py-2 rounded-md">
+                    <h2 class="text-white text-lg font-semibold uppercase tracking-wide">Homestay</h2>
+                    <div class="mt-1 w-10 h-0.5 bg-white mx-auto"></div>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{ route('flights.index') }}" class="relative group overflow-hidden rounded-xl shadow-md aspect-square">
+            <img src="/images/flight.jpg" alt="Vé máy bay"
+                class="w-full h-full object-cover transition duration-500 ease-in-out brightness-50 group-hover:brightness-100 group-hover:scale-105">
+            <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+                <div class="text-center bg-black bg-opacity-50 px-4 py-2 rounded-md">
+                    <h2 class="text-white text-lg font-semibold uppercase tracking-wide">{{ __('messages.home.flights') }}</h2>
+                    <div class="mt-1 w-10 h-0.5 bg-white mx-auto"></div>
+                </div>
+            </div>
+        </a>
     </div>
 </div>
-            @endforeach
-        </div>
-    @else
-        <p class="text-center text-gray-500 text-lg mt-12">Không có villa nào để hiển thị.</p>
-    @endif
-
-    {{-- JavaScript để điều khiển modal --}}
-    <script>
-        function openModal(id) {
-            document.getElementById(`modal-${id}`).classList.remove('hidden');
-        }
-
-        function closeModal(id) {
-            document.getElementById(`modal-${id}`).classList.add('hidden');
-        }
-    </script>
+@include('layouts.partials.contact-floating') {{-- Nút liên hệ nổi --}}
 @endsection

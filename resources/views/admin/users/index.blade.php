@@ -13,11 +13,12 @@
 
     <select name="role" class="border px-4 py-2 rounded">
         <option value="">-- Tất cả vai trò --</option>
-        <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-        <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
+        <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>admin</option>
+        <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>user</option>
     </select>
 
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lọc</button>
+    <a href="{{ route('admin.users.index') }}" class="text-gray-600 px-4 py-2 hover:underline">Đặt lại</a>
 </form>
 
     @if (session('success'))

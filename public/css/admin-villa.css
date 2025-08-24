@@ -1,0 +1,36 @@
+/* Làm nút hành động rõ ràng hơn */
+.table-action a,
+.table-action button {
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.table-action a:hover,
+.table-action button:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+/* Hiệu ứng hover cho từng dòng */
+.villa-row:hover {
+    background-color: #f3f4f6 !important; /* bg-gray-100 */
+}
+
+/* Ảnh villa thu nhỏ + đổ bóng nhẹ */
+.villa-image {
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Bảng cuộn ngang dễ nhìn hơn */
+table {
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+th, td {
+    font-size: 14px;
+}
+

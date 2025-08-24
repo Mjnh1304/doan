@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,11 +78,10 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'vi'),
+    'locale' => 'vi',
+    'fallback_locale' => 'vi',
+    'faker_locale' => 'vi_VN',
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-
-    'faker_locale' => env('APP_FAKER_LOCALE', 'vi_VN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,11 +122,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Laravel'),
     'env' => env('APP_ENV', 'production'),
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
     'locale' => env('APP_LOCALE', 'en'),
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
