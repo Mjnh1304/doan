@@ -27,10 +27,11 @@ Sản phẩm hướng tới sự đơn giản, ổn định, dễ tiếp cận c
 
 ## ✨ Tính năng chính
 - 👤 **Quản lý người dùng** (đăng ký, đăng nhập, phân quyền Admin/User).  
-- 🏘️ **Quản lý villa** (thêm, sửa, xóa, xem chi tiết).  
+- 🏘️ **Quản lý villa, resort** (thêm, sửa, xóa, xem chi tiết).  
 - 📅 **Đặt lịch thuê** (người dùng đặt, admin quản lý).  
 - 💬 **Bình luận & đánh giá villa/resort**.  
-- 🌐 **Giao diện thân thiện, hỗ trợ responsive**.  
+- 🌐 **Giao diện thân thiện, hỗ trợ responsive**.
+- 🧭 **Xem ảnh 360°** (panorama trong trang chi tiết villa, hỗ trợ zoom/drag/fullscreen).
 
 ---
 
